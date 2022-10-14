@@ -1,5 +1,7 @@
 float startTime = 0;
 Player player;
+Hunter g0;
+Target g1;
 
 ArrayList<GameObject> gobjs;
 void setup(){
@@ -7,8 +9,16 @@ void setup(){
   gobjs = new ArrayList<GameObject>();
   PVector posN = new PVector(50, 500); //Posição inicial da nave
   PVector dirN = new PVector(1, 0); //Direção incial da nave
+  PVector g0posN = new PVector(100, 300); //Posição inicial da nave
+  PVector g0dirN = new PVector(1, 0); //Direção incial da nave
+  PVector g1posN = new PVector(100, 300); //Posição inicial da nave
+  PVector g1dirN = new PVector(1, 0); //Direção incial da nave
   player = new Player(posN, dirN);
+  g0 = new Hunter(g0posN, g0dirN);
+  g1 = new Target(g1posN, g1dirN);
   gobjs.add(player);
+  gobjs.add(g0);
+  gobjs.add(g1);
   startTime = millis();
 }
 
@@ -23,12 +33,16 @@ void draw() {
 
 
 void update(float elapsedTime) {
-  player.update(elapsedTime);
+  for(GameObject obj : gobjs){
+    obj.update(elapsedTime);
+  }
  
 }
 
 void render() {
-   player.render();
+   for(GameObject obj : gobjs){
+    obj.render();
+  }
 }
 
 boolean verificarColisao(PVector obj1, PVector obj2, PVector dir, float av, float d) {
