@@ -1,11 +1,11 @@
 class Player extends GameObject{
-  PVector pos; //Posição atual (x,y)
+  //PVector pos; //Posição atual (x,y)
   PVector dir; //Direção atual (x,y)
   float vel;
   ArrowKey rotating;
   Player(PVector p, PVector d){
-    super();
-    this.pos = p;
+    super(p);
+    //this.pos = p;
     this.dir = d;
     this.vel = velN0;
     this.rotating = ArrowKey.Not;

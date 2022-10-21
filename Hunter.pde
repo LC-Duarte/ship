@@ -5,7 +5,7 @@ class Hunter extends GameShip{
   
   void update(float elapsedTime){
    
-    println(millis()/100);
+    //println(millis()/100);
     if(frameCount%60 ==0)// a cada 2 segundos
     {
       //muda direção aleatoriamente
@@ -30,5 +30,18 @@ class Hunter extends GameShip{
 
   }
   
+  
+  boolean hasTarget(GameObject target){
+    //Verifica se jogador esta sobre alcance
+    //TODO: função esta invertida, esta funcionado quando jogador esta atras do caçador
+    PVector cn = PVector.sub(this.pos, target.pos);
+    float angle = acos(cn.dot(dir)/(cn.mag() * this.dir.mag()));
+    if (angle < av/2) {
+      return this.pos.dist(target.pos) < critDist;
+    }
+    
+    return false;
+    }
+    
 
 }

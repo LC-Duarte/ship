@@ -1,18 +1,17 @@
 class GameShip extends GameObject{
-  PVector pos; //Posição atual (x,y)
+
   PVector dir; //Direção atual (x,y)
   float vel;
  
   GameShip(PVector p, PVector d){
-    super();
-    this.pos = p;
+    super(p);
     this.dir = d;
     this.vel = velN0;
   }
   
   void update(float elapsedTime){
    
-    println(millis()/100);
+    //println(millis()/100);
     if(frameCount%60 ==0)// a cada 2 segundos
     {
        dir.rotate(random(-velAng,velAng));
@@ -22,9 +21,6 @@ class GameShip extends GameObject{
     this.resetOnBorder();
     //update posição da nave
     this.pos.add(m);
-    
- 
-    
   }
   
   

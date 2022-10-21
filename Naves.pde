@@ -33,6 +33,14 @@ void draw() {
 
 
 void update(float elapsedTime) {
+  //Checar se o target esta em distancia de tiro pelo player
+  g1.isUTG(player);
+  
+  //Checar se jogador esta em perigo
+  boolean danger = g0.hasTarget(player);
+  String dangerAlert = danger ? "DANGER!" : "";
+  debugOnScreen(dangerAlert, 20, 40, 30, 255,0,0);
+  
   for(GameObject obj : gobjs){
     obj.update(elapsedTime);
   }
@@ -45,15 +53,7 @@ void render() {
   }
 }
 
-boolean verificarColisao(PVector obj1, PVector obj2, PVector dir, float av, float d) {
-  PVector cn = PVector.sub(obj1, obj2);
-  float angle = acos(cn.dot(dir)/(cn.mag() * dir.mag()));
-  if (angle < av/2) {
-    return obj1.dist(obj2) < d;
-  }
-  
-  return false;
-}
+
 
 void keyPressed() {
  if(keyCode == RIGHT)
